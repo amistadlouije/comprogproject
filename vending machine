@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+// Function declarations
+void displayMenu();
+int selectItem();
+float insertMoney();
+void dispenseItem(int item, float money);
+
+int main() {
+    displayMenu(); // Display the vending machine menu
+    int selectedItem = selectItem(); // User selects an item
+    float insertedMoney = insertMoney(); // User inserts money
+    dispenseItem(selectedItem, insertedMoney); // Dispense the item
+
+    return 0;
+}
+
+// Function to display the vending machine menu
+void displayMenu() {
+    printf("Vending Machine Menu:\n");
+    printf("1. Snickers - 20 pesos\n");
+    printf("2. Coke - 15 pesos\n");
+    printf("3. Chips - 10 pesos\n");
+}
+
+// Function for user to select an item
+int selectItem() {
+    int choice;
+    printf("Enter the item number you want to purchase: ");
+    scanf("%d", &choice);
+    return choice;
+}
+
+// Function for user to insert money
+float insertMoney() {
+    float money;
+    printf("Insert money (in pesos): ");
+    scanf("%f", &money);
+    return money;
+}
+
+// Function to dispense the selected item
+void dispenseItem(int item, float money) {
+    float price;
+
+    // Determine the price based on the selected item
+    switch (item) {
+        case 1:
+            price = 20.00;
+            break;
+        case 2:
+            price = 15.00;
+            break;
+        case 3:
+            price = 10.00;
+            break;
+        default:
+            printf("Invalid selection. Exiting.\n");
+            return;
+    }
+
+    // Check if the user inserted enough money
+    if (money >= price) {
+        printf("Item dispensed. Change: ₱%.2f\n", money - price);
+    } else {
+        printf("Insufficient funds. Please insert more money.\n");
+    }
+}
